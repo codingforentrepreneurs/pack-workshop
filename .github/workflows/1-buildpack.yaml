@@ -20,6 +20,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: setup pack
+        uses: buildpacks/github-actions/setup-pack@v5.0.0
+      - name: run pack
+        run: |
+          pack build --builder gcr.io/buildpacks/builder:google-22 jmitchel3/pack-workshop 
+      - name: Push to DockerHub
+        run: |
+          docker push jmitchel3/pack-workshop  --all-tags
       # # setup Python
       # - name: Set up Python ${{ matrix.python-version }}
       #   uses: actions/setup-python@v3
