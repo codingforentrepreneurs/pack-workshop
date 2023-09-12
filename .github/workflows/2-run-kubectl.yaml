@@ -19,7 +19,7 @@ jobs:
           EOF
       - name: Apply App Changes
         run: |
-          kubectl apply -f devops/
+          kubectl apply -f k8s/
       - name: Rollout Apps
         run: |
           kubectl rollout restart deployment buildpacks
